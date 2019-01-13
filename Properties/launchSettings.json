@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "replay-netsimul": {
+      "commandName": "Project",
+      "commandLineArgs": "--inputPath=\"D1.csv\" --packetLoss=0.1 --minLatency=100 --maxLatency=130 --sampling=50"
+    }
+  }
+}
