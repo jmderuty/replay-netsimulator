@@ -14,7 +14,9 @@ namespace replay_netsimul
             builder.AddCommandLine(args);
             var config = builder.Build().Get<AppConfig>();
 
+
             using (var reader = File.OpenText(config.InputPath))
+                using(var writer = new StreamWriter(File.OpenWrite(config.OutputPath)))
             {
 
                 var lastTimeSampled = 0;
@@ -29,8 +31,8 @@ namespace replay_netsimul
                         {
                             var newTime = entry.Time + config.MinLatency + rand.Next(config.MaxLatency - config.MinLatency + 1);
 
-                            Console.Write(newTime + "\t");
-                            Console.WriteLine(entry.Line);
+                            writer.Write(newTime + "\t");
+                            writer.WriteLine(entry.Line);
                         }
                     }
                 }
@@ -82,6 +84,10 @@ namespace replay_netsimul
         /// </summary>
         public string InputPath { get; set; }
 
+        /// <summary>
+        /// Optional output
+        /// </summary>
+        public string OutputPath { get; set; }
         /// <summary>
         /// Mini
         /// </summary>
